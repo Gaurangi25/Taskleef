@@ -1,41 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
 
-function ToDoItem(props) {
+const ToDoItem = ({ note, onToggleComplete, onDelete, currentFilter }) => {
   return (
-    <div
-      onClick={() => {
-        props.onChecked(props.id);
-      }}
-    >
-      <li>{props.text}</li>
+    <div className="note-card">
+      <p className="note-text">{note.text}</p>
+      <div className="note-actions">
+        {!note.completed && (
+          <button
+            className="complete-btn"
+            onClick={() => onToggleComplete(note.id)}
+          >
+            Mark Done
+          </button>
+        )}
+        <button className="delete-btn" onClick={() => onDelete(note.id)}>
+          Delete
+        </button>
+      </div>
     </div>
   );
-}
+};
 
 export default ToDoItem;
-
-
-/*
-import React, { useState } from "react";
-
-function ToDoItem(props) {
-  const [isDone, setIsDone] = useState(false);
-
-  function handleClick() {
-    //if prev value is true..return false and vice versa
-    setIsDone((prev) => {
-      return !prev;
-    });
-  }
-  return (
-    <div onClick={handleClick}>
-      <li style={{ textDecoration: isDone ? "line-through" : null }}>
-        {props.text}
-      </li>
-    </div>
-  );
-}
-
-export default ToDoItem;
-*/
-

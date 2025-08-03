@@ -1,45 +1,61 @@
 import React, { useState } from "react";
 import InputArea from "./InputArea";
-import ToDoItem from "./ToDoItem";
+import StickyNotes from "./StickyNotes";
+import ThemeToggle from "./ThemeToggle";
+import FilterBar from "./FilterBar";
 
-function App() {
-  const [items, setItems] = useState([]);
+const App = () => {
+  const [notes, setNotes] = useState([]);
+  const [completedNotes, setCompletedNotes] = useState([]);
+  const [filter, setFilter] = useState("all");
 
-  function addItem(newItem) {
-    setItems((prevItems) => {
-      return [...prevItems, newItem];
+  const addNote = (text) => {
+    const newNote = {
+      id: Date.now(),
+      text,
+      completed: false,
+    };
+    setNotes([newNote, ...notes]);
+  };
+
+  const toggleComplete = (id) => {
+    setNotes((prevNotes) => {
+      const updated = prevNotes.map((note) =>
+        note.id === id ? { ...note, completed: true } : note
+      );
+      const completed = updated.find((note) => note.id === id);
+      if (completed) {
+        setCompletedNotes((prev) => [completed, ...prev]);
+      }
+      return updated.filter((note) => note.id !== id);
     });
-  }
+  };
 
-  function deleteItem(id) {
-    console.log("item called deleted");
-    setItems((prev) => {
-      return prev.filter((item, index) => {
-        return index != id;
-      });
-    });
-  }
+  const deleteNote = (id) => {
+    setNotes((prev) => prev.filter((note) => note.id !== id));
+    setCompletedNotes((prev) => prev.filter((note) => note.id !== id));
+  };
+
+  const filteredNotes = (() => {
+    if (filter === "active") return notes;
+    if (filter === "completed") return completedNotes;
+    return [...notes, ...completedNotes];
+  })();
 
   return (
-    <div className="container">
-      <div className="heading">
-        <h1>To-Do List</h1>
-      </div>
-      <InputArea onAdd={addItem} />
-      <div>
-        <ul>
-          {items.map((todoItem, index) => (
-            <ToDoItem
-              key={index}
-              id={index}
-              text={todoItem}
-              onChecked={deleteItem}
-            />
-          ))}
-        </ul>
-      </div>
+    <div className="app-container">
+      <ThemeToggle />
+      <h1 className="app-title">Sticky Notes</h1>
+      <InputArea addNote={addNote} />
+      <FilterBar currentFilter={filter} setFilter={setFilter} />
+      <StickyNotes
+        notes={filteredNotes}
+        onToggleComplete={toggleComplete}
+        onDelete={deleteNote}
+        currentFilter={filter}
+      />
     </div>
   );
-}
+};
 
 export default App;

@@ -1,27 +1,34 @@
 import React, { useState } from "react";
 
-function InputArea(props) {
-  const [inputText, setInputText] = useState("");
+const InputArea = ({ addNote }) => {
+  const [input, setInput] = useState("");
 
-  function handleChange(event) {
-    const newValue = event.target.value;
-    setInputText(newValue);
-  }
+  const handleAdd = () => {
+    if (input.trim() === "") return;
+    addNote(input.trim());
+    setInput("");
+  };
 
   return (
-    <div className="form">
-      <input onChange={handleChange} type="text" value={inputText} />
-
-      <button
-        onClick={() => {
-          props.onAdd(inputText);
-          setInputText("");
+    <div className="input-area">
+      <textarea
+        className="note-input"
+        rows="3"
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        placeholder="Write your sticky note..."
+        onKeyDown={(e) => {
+          if (e.key === "Enter" && !e.shiftKey) {
+            e.preventDefault();
+            handleAdd();
+          }
         }}
-      >
-        <span>Add</span>
+      />
+      <button className="add-btn" onClick={handleAdd}>
+        Add
       </button>
     </div>
   );
-}
+};
 
 export default InputArea;
