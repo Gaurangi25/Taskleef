@@ -49,7 +49,7 @@ const App = () => {
         <div className="header-top">
           <ThemeToggle />
         </div>
-        <h1 className="app-title">Taskleef</h1>
+        <h1 className="app-title">TASKLEEF</h1>
       </div>
 
       {/* Input area */}
