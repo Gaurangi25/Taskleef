@@ -10,11 +10,11 @@ Taskleef is a simple and responsive To-Do List app built with React. It mimics s
 
 ## 📸 Screenshots
 
-### 🧾 Main Interface
-![Light Theme](./screenshots/light.png)
+### 🧾 Light Theme
+![Light Theme](./Screenshots/light.png)
 
-### 💡 Filter & Toggle
-![Dark Theme](./screenshots/dark.png)
+### 💡 Dark Theme
+![Dark Theme](./Screenshots/dark.png)
 
 🛠️ Installation
 git clone https://github.com/Gaurangi25/Taskleef.git
