@@ -1,11 +1,11 @@
 :root {
   --bg-color: #faf6f0;
   --text-color: #2c2c2c;
-  --card-bg: #fff5cc;         
+  --card-bg: #fff5cc;
   --card-shadow: rgba(0, 0, 0, 0.1);
-  --accent-color: #d98e04;    
-  --accent-hover: #f0a500;   
-  --pin-color: #6a994e;      
+  --accent-color: #d98e04;
+  --accent-hover: #f0a500;
+  --pin-color: #6a994e;
   --toggle-bg: #ccc;
   --toggle-thumb: #fff;
   --input-bg: #fffefa;
@@ -16,11 +16,11 @@
 body.dark {
   --bg-color: #1e1e1e;
   --text-color: #e6e6e6;
-  --card-bg: #2a2a2a;          
+  --card-bg: #2a2a2a;
   --card-shadow: rgba(0, 0, 0, 0.4);
-  --accent-color: #f4ac45;    
+  --accent-color: #f4ac45;
   --accent-hover: #f7bd66;
-  --pin-color: #b5e48c;        
+  --pin-color: #b5e48c;
   --toggle-bg: #555;
   --toggle-thumb: #1a1a1a;
   --input-bg: #292929;
@@ -28,15 +28,13 @@ body.dark {
   --border-color: #f4ac45;
 }
 
-
-
 /* Base Styles */
 body {
   font-family: "Segoe UI", sans-serif;
   background-color: var(--bg-color);
   color: var(--text-color);
   margin: 0;
-  padding: 2rem;
+  padding: 1rem;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -96,13 +94,14 @@ body {
 /* Input Area */
 .input-area {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 10px;
   margin: 20px auto;
   padding: 15px 20px;
   border-radius: 12px;
-  max-width: 500px;
+  max-width: 100rem;
   background-color: var(--input-bg);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease;
@@ -112,17 +111,20 @@ body {
   flex: 1;
   min-height: 80px;
   max-height: 150px;
+  min-width: 86rem;
+
   resize: vertical;
   padding: 12px 16px;
+  border-radius: 8px;
+
   font-size: 1rem;
   border: 2px solid var(--border-color);
-  border-radius: 8px;
   background-color: var(--note-input-bg);
   color: var(--text-color);
   outline: none;
   transition: all 0.3s ease;
   line-height: 1.5;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: "Segoe UI", sans-serif;
 }
 
 .note-input:focus {
@@ -184,16 +186,21 @@ body {
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: flex-start;
-  gap: 20px; /* spacing between cards */
-  padding: 20px;
+  gap: 13px; 
+  padding: 18px;
+  border: 2px solid var(--border-color); 
+  border-radius: 12px; 
+  margin: 27px;
+  background-color: var(--input-bg);
+  box-shadow: 0 4px 8px var(--card-shadow); 
 }
 
 .note-card {
   position: relative;
   background-color: var(--card-bg);
   padding: 1.5rem;
-  width: 220px;
-  height: 220px;
+  width: 271px;
+  height: 271px;
   border-radius: 8px;
   box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.15);
   font-size: 1rem;
@@ -212,12 +219,12 @@ body {
   color: var(--text-color);
   font-weight: 500;
   margin: 0;
-  white-space: pre-wrap;       
+  white-space: pre-wrap;
   word-wrap: break-word;
   overflow-y: auto;
   max-height: 130px;
   line-height: 1.4;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: "Segoe UI", sans-serif;
   padding-right: 4px;
 }
 
@@ -264,3 +271,391 @@ body {
   background-color: #dc2626;
 }
 
+/* header */ 
+.app-header {
+  height: 6rem;
+  padding: 1rem 2rem;
+  border-bottom: 2px solid var(--border-color);
+  margin-bottom: 2rem;
+  background: var(--input-bg);
+  border-radius: 12px;
+  box-shadow: 0 3px 8px var(--card-shadow);
+  transition: all 0.3s ease;
+}
+
+.header-top {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.app-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin: -4.5rem 0 0;
+  color: var(--accent-color);
+  font-weight: bold;
+}
+
+/* -------- Responsive Design -------- */
+
+/* Medium Devices - Tablets and smaller laptops */
+@media (max-width: 1024px) {
+  .note-input {
+    min-width: 60rem;
+  }
+
+  .notes-container {
+    justify-content: center;
+  }
+
+  .note-card {
+    width: 240px;
+    height: 240px;
+  }
+
+  .app-title {
+    font-size: 2rem;
+  }
+
+  .add-btn {
+    padding: 10px 18px;
+    font-size: 0.95rem;
+  }
+}
+
+/* Small Devices - Tablets and Large Phones */
+@media (max-width: 768px) {
+  .note-input {
+    min-width: 90%;
+  }
+
+  .input-area {
+    padding: 12px 16px;
+  }
+
+  .note-card {
+    width: 100%;
+    height: auto;
+  }
+
+  .app-title {
+    font-size: 1.8rem;
+    margin-top: -4rem;
+  }
+
+  .filter-bar {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .filter-btn {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
+/* Extra Small Devices - Phones */
+@media (max-width: 480px) {
+  .note-input {
+    min-width: 100%;
+    font-size: 0.9rem;
+  }
+
+  .note-card {
+    padding: 1rem;
+    width: 100%;
+    height: auto;
+  }
+
+  .note-text {
+    max-height: 100px;
+    font-size: 0.9rem;
+  }
+
+  .add-btn,
+  .complete-btn,
+  .delete-btn {
+    padding: 8px 14px;
+    font-size: 0.85rem;
+  }
+
+  .app-title {
+    font-size: 1.5rem;
+  }
+
+  .input-area,
+  .notes-container {
+    margin: 10px;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 1470px) {
+  .note-input {
+    min-width: 80rem;
+  }
+
+  .notes-container {
+    padding: 14px;
+    margin: 20px;
+    gap: 10px;
+  }
+
+  .note-card {
+    width: 260px;
+    height: 260px;
+  }
+
+  .app-title {
+    font-size: 2.2rem;
+  }
+
+  .filter-bar {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .input-area {
+    padding: 12px 18px;
+  }
+
+  .add-btn {
+    padding: 10px 18px;
+    font-size: 0.95rem;
+  }
+
+  .note-text {
+    max-height: 120px;
+  }
+
+  .complete-btn,
+  .delete-btn {
+    padding: 5px 10px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 1387px) {
+  .note-input {
+    min-width: 70rem;
+  }
+
+  .notes-container {
+    padding: 12px;
+    margin: 18px;
+    gap: 8px;
+  }
+
+  .note-card {
+    width: 240px;
+    height: 240px;
+  }
+
+  .app-title {
+    font-size: 2rem;
+  }
+
+  .filter-bar {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .input-area {
+    padding: 10px 16px;
+  }
+
+  .add-btn {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+
+  .note-text {
+    max-height: 110px;
+    font-size: 0.95rem;
+  }
+
+  .complete-btn,
+  .delete-btn {
+    padding: 4px 8px;
+    font-size: 0.85rem;
+  }
+}
+
+/* 1220px and below */
+@media (max-width: 1220px) {
+  .note-input {
+    min-width: 60rem;
+  }
+
+  .note-card {
+    width: 220px;
+    height: 220px;
+  }
+
+  .note-text {
+    font-size: 0.95rem;
+    max-height: 100px;
+  }
+}
+
+/* 1100px and below */
+@media (max-width: 1100px) {
+  .note-input {
+    min-width: 50rem;
+  }
+
+  .note-card {
+    width: 200px;
+    height: 200px;
+  }
+
+  .app-title {
+    font-size: 1.8rem;
+  }
+
+  .complete-btn,
+  .delete-btn {
+    font-size: 0.8rem;
+  }
+}
+
+/* 992px and below */
+@media (max-width: 992px) {
+  .note-input {
+    min-width: 93%;
+    margin: 0 auto;
+  }
+
+  .notes-container {
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .filter-bar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .input-area {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .note-card {
+    width: 180px;
+    height: 180px;
+  }
+}
+
+/* 768px and below (Tablet) */
+@media (max-width: 768px) {
+  .app-title {
+    font-size: 1.6rem;
+    text-align: center;
+  }
+
+  .note-card {
+    width: 160px;
+    height: 160px;
+  }
+
+  .note-text {
+    font-size: 0.9rem;
+  }
+
+  .input-area {
+    padding: 12px;
+  }
+}
+
+/* 600px and below */
+@media (max-width: 600px) {
+  .note-card {
+    width: 100%;
+    height: auto;
+  }
+
+  .notes-container {
+    flex-direction: column;
+    padding: 0 12px;
+  }
+
+  .input-area {
+    flex-direction: column;
+    padding: 10px;
+    gap: 8px;
+  }
+
+  .note-text {
+    max-height: none;
+  }
+}
+
+/* 480px and below (Mobile) */
+@media (max-width: 480px) {
+  .app-title {
+    font-size: 1.4rem;
+  }
+
+  .add-btn,
+  .complete-btn,
+  .delete-btn {
+    font-size: 0.75rem;
+    padding: 6px 12px;
+  }
+
+  .note-card {
+    padding: 10px;
+  }
+}
+
+/* 360px and below */
+@media (max-width: 360px) {
+  .note-input {
+    font-size: 0.50rem;
+  }
+
+  .app-title {
+    font-size: 1.2rem;
+  }
+
+  .note-card {
+    font-size: 0.85rem;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 350px) {
+  .app-title {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+
+  .note-input {
+    font-size: 0.75rem;
+    padding: 6px;
+  }
+
+  .add-btn,
+  .complete-btn,
+  .delete-btn {
+    font-size: 0.7rem;
+    padding: 5px 10px;
+  }
+
+  .note-card {
+    padding: 6px;
+    font-size: 0.8rem;
+    width: 100%;
+  }
+
+  .theme-toggle {
+    transform: scale(0.85);
+  }
+
+  .input-area {
+    gap: 6px;
+    padding: 8px;
+  }
+}

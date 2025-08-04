@@ -44,10 +44,21 @@ const App = () => {
 
   return (
     <div className="app-container">
-      <ThemeToggle />
-      <h1 className="app-title">Sticky Notes</h1>
+      {/* Header layout */}
+      <div className="app-header">
+        <div className="header-top">
+          <ThemeToggle />
+        </div>
+        <h1 className="app-title">Taskleef</h1>
+      </div>
+
+      {/* Input area */}
       <InputArea addNote={addNote} />
+
+      {/* Filters */}
       <FilterBar currentFilter={filter} setFilter={setFilter} />
+
+      {/* Notes */}
       <StickyNotes
         notes={filteredNotes}
         onToggleComplete={toggleComplete}
